@@ -16,6 +16,7 @@
 		"emgiezet/errbit-php": "dev-master",
 		"clue/phar-composer": "^1.0"
 	},
+	"minimum-stability": "dev",
 	"scripts": {
       "extension-create-libs": [
         "mkdir -p Libraries/temp Libraries/build",
