@@ -13,8 +13,7 @@
 	"license": ["GPL-2.0+"],
 	"keywords": ["errbit", "TYPO3", "error catcher"],
 	"require": {
-		"emgiezet/errbit-php": "dev-master",
-		"clue/phar-composer": "^1.0"
+		"emgiezet/errbit-php": "dev-master"
 	},
 	"minimum-stability": "dev",
 	"scripts": {
