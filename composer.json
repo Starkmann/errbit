@@ -1,0 +1,25 @@
+{
+	"name": "eike/errbit",
+	"type": "typo3-cms-extension",
+	"description": "Errbit error catcher integration",
+	"homepage": "https://github.com/Starkmann/errbit",
+	"authors": [
+		{
+			"name": "Eike Starkmann",
+			"email": "eike.starkmann@posteo.de",
+			"role": "Developer"
+		} 
+	],
+	"license": ["GPL-2.0+"],
+	"keywords": ["errbit", "TYPO3", "error catcher"],
+	"version": "0.0.1",
+	"require": {
+		"typo3/cms": ">=7.6"
+	},
+	"autoload": {
+		"psr-4": {
+		 "Eike\\Errbit\\": "Classes"
+		}
+  }
+}
+
