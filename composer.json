@@ -12,10 +12,6 @@
 	],
 	"license": ["GPL-2.0+"],
 	"keywords": ["errbit", "TYPO3", "error catcher"],
-	"require": {
-		"emgiezet/errbit-php": "dev-master"
-	},
-	"minimum-stability": "dev",
 	"scripts": {
       "extension-create-libs": [
         "mkdir -p Libraries/temp Libraries/build",
