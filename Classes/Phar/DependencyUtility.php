@@ -20,7 +20,9 @@ namespace Eike\Errbit\Phar;
  
  
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
- 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+
 class DependencyUtility
 {
      
@@ -31,8 +33,11 @@ class DependencyUtility
      
     static public function includePharDependencies()
     {
+       # DebuggerUtility::var_dump(file_get_contents(GeneralUtility::getFileAbsFileName('typo3conf/ext/errbit/Libraries/errbit-php.phar')));
         /** @noinspection PhpIncludeInspection */
-        @include_once 'phar://' . ExtensionManagementUtility::extPath('errbit') . 'Libraries/errbit-php.phar/vendor/autoload.php';
+        @include_once 'phar://' . GeneralUtility::getFileAbsFileName('typo3conf/ext/errbit/Libraries/errbit-php.phar').'/vendor/autoload.php';
+
     }
 }
+
 

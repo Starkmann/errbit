@@ -27,8 +27,15 @@
 namespace Eike\Errbit;
  
  use Eike\Errbit\Phar\DependencyUtility;
-    
-class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler{
+ use Errbit\Errbit;
+ use TYPO3\CMS\Core\Package\PackageManager;
+ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+ use TYPO3\CMS\Core\Utility\GeneralUtility;
+ use TYPO3\CMS\Core\Utility\PathUtility;
+ use TYPO3\CMS\Extbase\Object\ObjectManager;
+ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+
+ class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler{
      
      public function __construct()
      {
@@ -43,11 +50,22 @@ class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler{
      * @return void
      * @TODO #72293 This will change to \Throwable only if we are >= PHP7.0 only
      */
-     public function echoExceptionWeb($exception) {
-        die("Hallo");
-     }
+     public function echoExceptionWeb($exception)
+     {
+         Errbit::instance()->configure(
+             array(
+                 'api_key' => '62d450992f2926f5a6dfffc48e5a6c17',
+                 'host' => '172.18.0.1',
+                 'port' => '8067'
 
-     
+             )
+         )->start();
+
+         Errbit::instance()->notify($exception);
+
+
+         parent::echoExceptionWeb($exception);
+     }
      
      
  }
