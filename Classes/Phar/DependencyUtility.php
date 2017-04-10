@@ -33,9 +33,8 @@ class DependencyUtility
      
     static public function includePharDependencies()
     {
-       # DebuggerUtility::var_dump(file_get_contents(GeneralUtility::getFileAbsFileName('typo3conf/ext/errbit/Libraries/errbit-php.phar')));
         /** @noinspection PhpIncludeInspection */
-        @include_once 'phar://' . GeneralUtility::getFileAbsFileName('typo3conf/ext/errbit/Libraries/errbit-php.phar').'/vendor/autoload.php';
+        @include_once 'phar://' . GeneralUtility::getFileAbsFileName('typo3conf/ext/errbit/Libraries/phpbrake.phar').'/vendor/autoload.php';
 
     }
 }

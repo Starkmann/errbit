@@ -52,16 +52,20 @@ namespace Eike\Errbit;
      */
      public function echoExceptionWeb($exception)
      {
-         Errbit::instance()->configure(
-             array(
-                 'api_key' => '62d450992f2926f5a6dfffc48e5a6c17',
-                 'host' => '172.18.0.1',
-                 'port' => '8067'
+         $notifier = new \Airbrake\Notifier([
+             'projectId' => 1, // FIX ME
+             'projectKey' => '83cf5aafe3b9f09cde2c7f4bbdce4063', // FIX ME
+             'host' => 'http://172.17.0.1:8067',
+             'port' => '8067'
+         ]);
 
-             )
-         )->start();
+         \Airbrake\Instance::set($notifier);
 
-         Errbit::instance()->notify($exception);
+         $handler = new \Airbrake\ErrorHandler($notifier);
+         $handler->register();
+
+         \Airbrake\Instance::notify($exception);
+     
 
 
          parent::echoExceptionWeb($exception);
