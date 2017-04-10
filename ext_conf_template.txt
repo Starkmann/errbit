@@ -1,0 +1,6 @@
+# cat=basic;type=input; label=Product id
+projectId =
+# cat=basic;type=input; label=Product key
+projectKey =
+# cat=basic;type=input; label=Errbit host
+host =

@@ -29,7 +29,7 @@ namespace Eike\Errbit;
  use Eike\Errbit\Phar\DependencyUtility;
 
 
- class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler{
+ class ProductionExceptionHandler extends \TYPO3\CMS\Core\Error\ProductionExceptionHandler {
      
      public function __construct()
      {
@@ -48,7 +48,7 @@ namespace Eike\Errbit;
              'projectId' => $settings['projectId'],
              'projectKey' => $settings['projectKey'],
              'host' => $settings['host'],
-             'environment' => 'development'
+             'environment' => 'production'
          ]);
 
          \Airbrake\Instance::set($notifier);
@@ -57,6 +57,8 @@ namespace Eike\Errbit;
          $handler->register();
 
          \Airbrake\Instance::notify($exception);
+     
+
 
          parent::echoExceptionWeb($exception);
      }

@@ -29,18 +29,22 @@ namespace Eike\Errbit;
  use Eike\Errbit\Phar\DependencyUtility;
 
 
- class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler{
+ class ErrorHandler extends \TYPO3\CMS\Core\Error\ErrorHandler {
      
-     public function __construct()
+     public function __construct($errorHandlerErrors)
      {
          DependencyUtility::includePharDependencies();
-         parent::__construct();
+         parent::__construct($errorHandlerErrors);
      }
 
+
      /**
-      * @param \Exception|\Throwable $exception
+      * @param int $errorLevel
+      * @param string $errorMessage
+      * @param string $errorFile
+      * @param int $errorLine
       */
-     public function echoExceptionWeb($exception)
+     public function handleError($errorLevel, $errorMessage, $errorFile, $errorLine)
      {
          $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
 
@@ -56,9 +60,11 @@ namespace Eike\Errbit;
          $handler = new \Airbrake\ErrorHandler($notifier);
          $handler->register();
 
-         \Airbrake\Instance::notify($exception);
+         \Airbrake\Instance::notify($errorMessage);
+     
 
-         parent::echoExceptionWeb($exception);
+
+         parent::handleError($errorLevel, $errorMessage, $errorFile, $errorLine);
      }
      
      
