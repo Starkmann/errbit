@@ -16,8 +16,8 @@
       "extension-create-libs": [
         "mkdir -p Libraries/temp Libraries/build",
         "if [ ! -f Libraries/build/vendor/bin/phar-composer ]; then cd Libraries/build && composer require clue/phar-composer; fi",
-        "if [ ! -f Libraries/errbit-php.phar ]; then cd Libraries/temp && composer require emgiezet/errbit-php && composer config classmap-authoritative true && composer config prepend-autoloader false && composer dump-autoload; fi",
-        "[ -f Libraries/errbit-php.phar ] || Libraries/build/vendor/bin/phar-composer build Libraries/temp/ Libraries/errbit-php.phar",
+        "if [ ! -f Libraries/phpbrake.phar ]; then cd Libraries/temp && composer require airbrake/phpbrake && composer config classmap-authoritative true && composer config prepend-autoloader false && composer dump-autoload; fi",
+        "[ -f Libraries/phpbrake.phar ] || Libraries/build/vendor/bin/phar-composer build Libraries/temp/ Libraries/phpbrake.phar",
         "chmod -x Libraries/*.phar",
         "rm -rf Libraries/temp Libraries/build"
       ],
