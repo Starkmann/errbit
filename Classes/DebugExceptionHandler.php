@@ -25,12 +25,12 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 namespace Eike\Errbit;
- 
+
  use Eike\Errbit\Phar\DependencyUtility;
 
 
  class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler{
-     
+
      public function __construct()
      {
          DependencyUtility::includePharDependencies();
@@ -38,9 +38,10 @@ namespace Eike\Errbit;
      }
 
      /**
-      * @param \Exception|\Throwable $exception
-      */
-     public function echoExceptionWeb($exception)
+     * @param \Exception $exception
+     *
+     **/
+     public function echoExceptionWeb(\Exception $exception)
      {
          $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
 
@@ -60,6 +61,6 @@ namespace Eike\Errbit;
 
          parent::echoExceptionWeb($exception);
      }
-     
-     
+
+
  }

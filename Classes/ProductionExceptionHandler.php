@@ -25,7 +25,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 namespace Eike\Errbit;
- 
+
  use Eike\Errbit\Phar\DependencyUtility;
 
 
@@ -38,9 +38,10 @@ namespace Eike\Errbit;
      }
 
      /**
-      * @param \Exception|\Throwable $exception
-      */
-     public function echoExceptionWeb($exception)
+     * @param \Exception $exception
+     *
+     **/
+     public function echoExceptionWeb(\Exception $exception)
      {
          $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
 
@@ -57,11 +58,11 @@ namespace Eike\Errbit;
          $handler->register();
 
          \Airbrake\Instance::notify($exception);
-     
+
 
 
          parent::echoExceptionWeb($exception);
      }
-     
-     
+
+
  }
