@@ -31,7 +31,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'suggests' => array(
 		),
 	),
-    'autoload' =>
+	'autoload' =>
         array(
             'psr-4' => array('Eike\\Errbit\\' => 'Classes')
         ),
