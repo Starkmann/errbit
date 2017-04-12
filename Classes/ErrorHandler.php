@@ -60,7 +60,7 @@ namespace Eike\Errbit;
          $handler = new \Airbrake\ErrorHandler($notifier);
          $handler->register();
 
-         $exception = new \ErrorException($errorMessage,1492000587,$errorFile,$errorLine);
+         $exception = new \ErrorException($errorMessage,1492000587,$errorLevel,$errorFile,$errorLine);
 
          \Airbrake\Instance::notify($exception);
      
