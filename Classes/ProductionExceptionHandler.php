@@ -41,7 +41,7 @@ namespace Eike\Errbit;
      * @param \Exception $exception
      *
      **/
-     public function echoExceptionWeb($exception)
+     public function echoExceptionWeb(\Exception $exception)
      {
          $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
 
