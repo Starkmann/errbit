@@ -29,7 +29,7 @@ E.g if you just want exceptions to be tracked in production mode you just regist
 
 Via the extension manager you can configure the extension.
 
-- projectId: Product id in your errbit/airbrake installation
-- projectKey:  Product key in your errbit/airbrake installation
-- host: URL to your errbit server (e.g. https://server.com:port)
+- apiKey: Your app api key in your errbit/airbrake installation
+- host: URL to your errbit server (e.g. domain.com)
+- port: The port errbit/airbrake listens on (https is 443)
 
