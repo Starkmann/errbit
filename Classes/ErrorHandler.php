@@ -49,7 +49,6 @@ class ErrorHandler extends \TYPO3\CMS\Core\Error\ErrorHandler
                 ->configure([
                     'api_key' => $settings['apiKey'],
                     'host' => $settings['host'],
-                    'environment_name' => 'development',
                     'port' => $settings['port']
                 ])->start();
             Errbit::instance()->notify(new ErrorException($errorMessage, 1492000587, $errorLevel, $errorFile, $errorLine));

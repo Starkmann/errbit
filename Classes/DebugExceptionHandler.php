@@ -46,7 +46,7 @@ class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler
                 ->configure([
                     'api_key' => $settings['apiKey'],
                     'host' => $settings['host'],
-                    'environment_name' => 'development',
+                    'environment_name' => 'Development',
                     'port' => $settings['port']
                 ])->start();
 

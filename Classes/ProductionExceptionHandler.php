@@ -47,7 +47,7 @@ class ProductionExceptionHandler extends \TYPO3\CMS\Core\Error\ProductionExcepti
                 ->configure([
                     'api_key' => $settings['apiKey'],
                     'host' => $settings['host'],
-                    'environment_name' => 'development',
+                    'environment_name' => 'Production',
                     'port' => $settings['port']
                 ])->start();
 
