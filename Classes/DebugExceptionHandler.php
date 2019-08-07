@@ -24,44 +24,37 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
 namespace Eike\Errbit;
 
- use Eike\Errbit\Phar\DependencyUtility;
- use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Errbit\Errbit;
+use Exception;
 
 
- class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler{
+class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler
+{
 
-     public function __construct()
-     {
-         DependencyUtility::includePharDependencies();
-         parent::__construct();
-     }
-
-     /**
-     * @param \Exception $exception
+    /**
+     * @param Exception $exception
      *
      **/
-     public function echoExceptionWeb($exception)
-     {
-         $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
+    public function echoExceptionWeb($exception)
+    {
+        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
+        if(isset($settings['apiKey'])&&isset($settings['host'])) {
+            Errbit::instance()
+                ->configure([
+                    'api_key' => $settings['apiKey'],
+                    'host' => $settings['host'],
+                    'environment_name' => 'development',
+                    'port' => $settings['port']
+                ])->start();
 
-         $notifier = new \Airbrake\Notifier([
-             'projectId' => $settings['projectId'],
-             'projectKey' => $settings['projectKey'],
-             'host' => $settings['host'],
-             'environment' => 'development'
-         ]);
+            Errbit::instance()->notify($exception);
+        }
 
-         \Airbrake\Instance::set($notifier);
-
-         $handler = new \Airbrake\ErrorHandler($notifier);
-         $handler->register();
-
-         \Airbrake\Instance::notify($exception);
-
-         parent::echoExceptionWeb($exception);
-     }
+        parent::echoExceptionWeb($exception);
+    }
 
 
- }
+}

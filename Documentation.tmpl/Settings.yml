@@ -10,18 +10,18 @@
 conf.py:
   copyright: 2017
   project: Errbit for Typo3
-  version: 
-  release: 
+  version:
+  release:
   intersphinx_mapping:
     t3tsref:
-    - http://docs.typo3.org/typo3cms/TyposcriptReference/
-    - null
+      - http://docs.typo3.org/typo3cms/TyposcriptReference/
+      - null
   latex_documents:
-  - - Index
-    - errbit.tex
-    - Errbit for Typo3
-    - Eike  Starkmann
-    - manual
+    - - Index
+      - errbit.tex
+      - Errbit for Typo3
+      - Eike  Starkmann
+      - manual
   latex_elements:
     papersize: a4paper
     pointsize: 10pt

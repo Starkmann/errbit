@@ -24,50 +24,39 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
 namespace Eike\Errbit;
- 
- use Eike\Errbit\Phar\DependencyUtility;
+
+use Errbit\Errbit;
+use ErrorException;
 
 
- class ErrorHandler extends \TYPO3\CMS\Core\Error\ErrorHandler {
-     
-     public function __construct($errorHandlerErrors)
-     {
-         DependencyUtility::includePharDependencies();
-         parent::__construct($errorHandlerErrors);
-     }
+class ErrorHandler extends \TYPO3\CMS\Core\Error\ErrorHandler
+{
 
 
-     /**
-      * @param int $errorLevel
-      * @param string $errorMessage
-      * @param string $errorFile
-      * @param int $errorLine
-      */
-     public function handleError($errorLevel, $errorMessage, $errorFile, $errorLine)
-     {
-         $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
-
-         $notifier = new \Airbrake\Notifier([
-             'projectId' => $settings['projectId'],
-             'projectKey' => $settings['projectKey'],
-             'host' => $settings['host'],
-             'environment' => 'development'
-         ]);
-
-         \Airbrake\Instance::set($notifier);
-
-         $handler = new \Airbrake\ErrorHandler($notifier);
-         $handler->register();
-
-         $exception = new \ErrorException($errorMessage,1492000587,$errorLevel,$errorFile,$errorLine);
-
-         \Airbrake\Instance::notify($exception);
-     
+    /**
+     * @param int $errorLevel
+     * @param string $errorMessage
+     * @param string $errorFile
+     * @param int $errorLine
+     */
+    public function handleError($errorLevel, $errorMessage, $errorFile, $errorLine)
+    {
+        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
+        if(isset($settings['apiKey'])&&isset($settings['host'])) {
+            Errbit::instance()
+                ->configure([
+                    'api_key' => $settings['apiKey'],
+                    'host' => $settings['host'],
+                    'environment_name' => 'development',
+                    'port' => $settings['port']
+                ])->start();
+            Errbit::instance()->notify(new ErrorException($errorMessage, 1492000587, $errorLevel, $errorFile, $errorLine));
+        }
+        
+        parent::handleError($errorLevel, $errorMessage, $errorFile, $errorLine);
+    }
 
 
-         parent::handleError($errorLevel, $errorMessage, $errorFile, $errorLine);
-     }
-     
-     
- }
+}

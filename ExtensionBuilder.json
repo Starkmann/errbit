@@ -1,47 +1,43 @@
 {
-    "modules": [
-
-    ],
-    "properties": {
-        "backendModules": [
-
-        ],
-        "description": "Integrates errbit error catcher for typo3",
-        "emConf": {
-            "category": "services",
-            "custom_category": "",
-            "dependsOn": "typo3 => 7.6.0-7.6.99\n",
-            "disableLocalization": false,
-            "disableVersioning": false,
-            "skipGenerateDocumentationTemplate": false,
-            "sourceLanguage": "en",
-            "state": "alpha",
-            "targetVersion": "7.6.0-7.6.99",
-            "version": ""
-        },
-        "extensionKey": "errbit",
-        "name": "Errbit for Typo3",
-        "originalExtensionKey": "",
-        "originalVendorName": "",
-        "persons": [
-            {
-                "company": "",
-                "email": "eike.starkmann@posteo.de",
-                "name": "Eike  Starkmann",
-                "role": "Developer"
-            }
-        ],
-        "plugins": [
-
-        ],
-        "vendorName": "Eike"
-    },
-    "wires": [
-
-    ],
-    "log": {
-        "last_modified": "2017-02-01 12:03",
-        "extension_builder_version": "7.6.0",
-        "be_user": " (1)"
-    }
+	"modules": [
+	],
+	"properties": {
+		"backendModules": [
+		],
+		"description": "Integrates errbit error catcher for typo3",
+		"emConf": {
+			"category": "services",
+			"custom_category": "",
+			"dependsOn": "typo3 => 7.6.0-7.6.99\n",
+			"disableLocalization": false,
+			"disableVersioning": false,
+			"skipGenerateDocumentationTemplate": false,
+			"sourceLanguage": "en",
+			"state": "alpha",
+			"targetVersion": "7.6.0-7.6.99",
+			"version": ""
+		},
+		"extensionKey": "errbit",
+		"name": "Errbit for Typo3",
+		"originalExtensionKey": "",
+		"originalVendorName": "",
+		"persons": [
+			{
+				"company": "",
+				"email": "eike.starkmann@posteo.de",
+				"name": "Eike  Starkmann",
+				"role": "Developer"
+			}
+		],
+		"plugins": [
+		],
+		"vendorName": "Eike"
+	},
+	"wires": [
+	],
+	"log": {
+		"last_modified": "2017-02-01 12:03",
+		"extension_builder_version": "7.6.0",
+		"be_user": " (1)"
+	}
 }

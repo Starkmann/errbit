@@ -11,27 +11,25 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Errbit for Typo3',
-	'description' => 'Integrates errbit error catcher for typo3',
-	'category' => 'services',
-	'author' => 'Eike  Starkmann',
-	'author_email' => 'eike.starkmann@posteo.de',
-	'state' => 'alpha',
-	'internal' => '',
-	'uploadfolder' => '0',
-	'createDirs' => '',
-	'clearCacheOnLoad' => 0,
-	'version' => '1.0.0',
-	'constraints' => array(
-		'depends' => array(
-			'typo3' => '7.6.0-7.6.99',
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
-	'autoload' =>
+    'title' => 'Errbit for Typo3',
+    'description' => 'Integrates errbit error catcher for typo3',
+    'category' => 'services',
+    'author' => 'Eike  Starkmann',
+    'author_email' => 'eike.starkmann@posteo.de',
+    'state' => 'beta',
+    'internal' => '',
+    'uploadfolder' => '0',
+    'createDirs' => '',
+    'clearCacheOnLoad' => 0,
+    'version' => '2.0.0',
+    'constraints' => array(
+        'depends' => array(
+            'typo3' => '7.6.0-8.7.99',
+        ),
+        'conflicts' => array(),
+        'suggests' => array(),
+    ),
+    'autoload' =>
         array(
             'psr-4' => array('Eike\\Errbit\\' => 'Classes')
         ),

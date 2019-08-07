@@ -8,29 +8,22 @@
 			"name": "Eike Starkmann",
 			"email": "eike.starkmann@posteo.de",
 			"role": "Developer"
-		} 
+		}
 	],
-	"license": ["GPL-2.0+"],
-	"keywords": ["errbit", "TYPO3", "error catcher"],
-	"scripts": {
-      "extension-create-libs": [
-        "mkdir -p Libraries/temp Libraries/build",
-        "if [ ! -f Libraries/build/vendor/bin/phar-composer ]; then cd Libraries/build && composer require clue/phar-composer; fi",
-        "if [ ! -f Libraries/phpbrake.phar ]; then cd Libraries/temp && composer require airbrake/phpbrake && composer config classmap-authoritative true && composer config prepend-autoloader false && composer dump-autoload; fi",
-        "[ -f Libraries/phpbrake.phar ] || Libraries/build/vendor/bin/phar-composer build Libraries/temp/ Libraries/phpbrake.phar",
-        "chmod -x Libraries/*.phar",
-        "rm -rf Libraries/temp Libraries/build"
-      ],
-      "extension-build": [
-        "@extension-create-libs"
-      ],
-      "extension-clean": [
-        "rm -rf Libraries"
-      ]
-    },
+	"license": [
+		"GPL-2.0+"
+	],
+	"keywords": [
+		"errbit",
+		"TYPO3",
+		"error catcher"
+	],
 	"autoload": {
 		"psr-4": {
-		 "Eike\\Errbit\\": "Classes"
+			"Eike\\Errbit\\": "Classes"
 		}
-  }
+	},
+	"require": {
+		"emgiezet/errbit-php": "^1.1"
+	}
 }
