@@ -1,5 +1,5 @@
 <?php
-
+namespace Eike\Errbit;
 /***************************************************************
  *
  *  Copyright notice
@@ -25,29 +25,25 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-namespace Eike\Errbit;
-
 use Errbit\Errbit;
-use Exception;
-
 
 class DebugExceptionHandler extends \TYPO3\CMS\Core\Error\DebugExceptionHandler
 {
 
     /**
-     * @param Exception $exception
+     * @param \Throwable $exception
      *
-     **/
-    public function echoExceptionWeb($exception)
+     */
+    public function echoExceptionWeb(\Throwable $exception)
     {
-        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
-        if(isset($settings['apiKey'])&&isset($settings['host'])) {
+        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit'], false);
+        if (isset($settings['apiKey'], $settings['host'])) {
             Errbit::instance()
                 ->configure([
                     'api_key' => $settings['apiKey'],
                     'host' => $settings['host'],
                     'environment_name' => 'Development',
-                    'port' => $settings['port']
+                    'port' => $settings['port'],
                 ])->start();
 
             Errbit::instance()->notify($exception);
