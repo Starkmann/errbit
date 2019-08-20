@@ -1,5 +1,5 @@
 <?php
-
+namespace Eike\Errbit;
 /***************************************************************
  *
  *  Copyright notice
@@ -25,10 +25,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-namespace Eike\Errbit;
-
 use Errbit\Errbit;
 use ErrorException;
+use TYPO3\CMS\Core\Error\Exception;
 
 
 class ErrorHandler extends \TYPO3\CMS\Core\Error\ErrorHandler
@@ -40,20 +39,22 @@ class ErrorHandler extends \TYPO3\CMS\Core\Error\ErrorHandler
      * @param string $errorMessage
      * @param string $errorFile
      * @param int $errorLine
+     * @throws Exception
      */
     public function handleError($errorLevel, $errorMessage, $errorFile, $errorLine)
     {
-        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit']);
-        if(isset($settings['apiKey'])&&isset($settings['host'])) {
+        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['errbit'], false);
+        if (isset($settings['apiKey'], $settings['host'])) {
             Errbit::instance()
                 ->configure([
                     'api_key' => $settings['apiKey'],
                     'host' => $settings['host'],
-                    'port' => $settings['port']
+                    'port' => $settings['port'],
                 ])->start();
-            Errbit::instance()->notify(new ErrorException($errorMessage, 1492000587, $errorLevel, $errorFile, $errorLine));
+            Errbit::instance()->notify(new ErrorException($errorMessage, 1492000587, $errorLevel, $errorFile,
+                $errorLine));
         }
-        
+
         parent::handleError($errorLevel, $errorMessage, $errorFile, $errorLine);
     }
 
